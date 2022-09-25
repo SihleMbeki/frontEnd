@@ -1,0 +1,18 @@
+/*!
+ * Bootstrap v4.5.0 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+
+/*# sourceMappingURL=bootstrap.min.css.map */
+.list-group-item {
+    padding: 0 0 0 10px !important;   
+    margin:5px 5px;
+    text-align: left  !important;
+}
+#error{
+    color: red !important;
+}
+.error{
+    color: red important;
+}
