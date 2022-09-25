@@ -16,3 +16,9 @@
 .error{
     color: red important;
 }
+#navbar-site{
+    font-family: "Roboto Slab", sans-serif;
+    font-weight: 300;
+    background-color: #337ab7 !important;
+    ;
+}
