@@ -17,7 +17,7 @@ $.ajax({
         $("#childrens").text(data.length);
     },
     error: function(data){
-        alert("fail");
+       // alert("fail");
     }
 });
 
@@ -35,7 +35,7 @@ $.ajax({
         $("#parents").text(data.length);
     },
     error: function(data){
-        alert("fail");
+       // alert("fail");
     }
 });
 
@@ -53,7 +53,7 @@ $.ajax({
         $("#schools").text(data.length);
     },
     error: function(data){
-        alert("fail");
+      //  alert("fail");
     }
 });
 
@@ -71,7 +71,7 @@ $.ajax({
         $("#symptoms").text(data.length);
     },
     error: function(data){
-        alert("fail");
+       // alert("fail");
     }
 });
 
@@ -89,7 +89,7 @@ $.ajax({
         $("#Pertermaridzburg").text(data.length);
     },
     error: function(data){
-        alert("fail");
+       // alert("fail");
     }
 });
 
@@ -107,6 +107,6 @@ $.ajax({
         $("#Durban").text(data.length);
     },
     error: function(data){
-        alert("fail");
+        //alert("fail");
     }
 });
