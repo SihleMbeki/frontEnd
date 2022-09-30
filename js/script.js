@@ -68,3 +68,16 @@ $.ajax({
 	
 
 });
+
+$.ajax({
+    type: "POST",
+    url: "http://localhost:5001/api/content/childrens",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(data) {
+        alert(data.d);
+    },
+    error: function(data){
+        alert("fail");
+    }
+});
