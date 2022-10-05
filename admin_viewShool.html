@@ -47,28 +47,8 @@
       <button type="submit" class="list-group-item"><a href="admin_viewShool.html">View Schools</a></button>
     </div>
   </div>
-  <div class="content col-lg-8" id="mission">
-    <form>
-      <div class="form-group">
-        <h4 class="card-title">Parents Count</h4>
-          <label for="inputEmail">Number of Parent Accounts: <span id="parents"></span></label>
-      </div>
-
-      <div class="form-group">
-        <h4 class="card-title">Symptoms</h4>
-          <label for="inputEmail">Number of Symptoms: <span id="symptoms"></span></label>
-      </div>
-      <div class="form-group">
-        <h4 class="card-title">Number of Childrens</h4>
-        <label for="inputEmail">Number of Parent Childrens: <span id="childrens"></span></label>
-    </div>
-    <div class="form-group">
-      <h4 class="card-title">Number of Schools</h4>
-        <label for="inputEmail">Number of special schools: <span id="schools"></span></label><br/>
-        <label for="inputEmail">Durban: <span id="Durban"></span></label><br/>
-        <label for="inputEmail">Maritzburg: <span id="Pertermaridzburg"></span></label><br/>
-    </div>
-  </form>
+  <div class="content col-lg-8" id="viewshool">
+ 
   </div>
 </div>
 </div><!-- content container -->
@@ -78,6 +58,48 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
 <script type="text/javascript" src="js/adminscript.js"></script>
+<script>
+$.ajax({
+    type: "GET",
+	headers: {
+		'Authorization':"Bearer "+ userJson.token,
+  'Content-Type': 'application/json'
+	},
+    url: "http://localhost:5001/api/content/schools",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+
+    success: function(data) {
+      $("#viewshool").append("<table><thead><tr><th>Name</th><th>Street</th><th>Surburb</th><th>Province</th><th>City</th><th>Phone</th><th>Email</th><th>Link</th></tr> </thead>");
+      data.forEach(function (v) { 
+        var name = v.name;
+         var postalCode = v.postalCode; 
+         var street = v.street;
+         var surbub = v.surbub;
+         var phone = v.phone; 
+         var email = v.email;
+         var province = v.province;
+         var city = v.city;
+         var link = v.link;
+      $("#viewshool table").append(
+        "<tr><td>"+name+"</td><td>"+street+"</td><td>"+surbub+"</td><td>"+province+"</td><td>"+city+"</td><td>"+phone+"</td><td>"+email+"</td><td>"+link+"</td><tr>");
+      });
+   
+      $("#viewshool table").addClass("table");
+      $("td").attr("scope","row");
+      $("th").attr("scope","col");
+      $("#viewshool").append("</table>");
+
+      
+      //(data);
+      //  $("#childrens").text(data.length);
+    },
+    error: function(data){
+        alert("fail");
+    }
+});
+
+</script>
 
 
 <script>

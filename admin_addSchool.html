@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Bootstrap</title>
+</head>
+
+<body data-spy="scroll" data-target="#navbar-site" data-offset="80">
+
+  <style>
+    body {
+      position: relative;
+      padding-top: 80px;
+    }
+  </style>
+
+<nav id="navbar-site" class="fixed-top navbar navbar-dark navbar-expand-sm">
+  <div class="container">
+  
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="#mission">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#services">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#staff">Contact</a></li>
+    </ul>
+
+    <form class="form-inline pull-xs-right">
+      <button class="btn btn-primary" type="submit" id="logout">Logout</button>
+    </form><!-- navbar-nav -->
+  </div><!-- container -->
+</nav>
+
+<div class="container">
+<div class="row">
+  <div class="content col-lg-3" id="mission">
+
+      <div class="list-group">
+      <button type="submit" class="list-group-item">View Users</button>
+      <button type="submit" class="list-group-item">Add Users</button>
+      <button type="submit" class="list-group-item"><a href="admin_addSchool.html">Add School</a></button>
+      <button type="submit" class="list-group-item"><a href="admin_addSymptoms.html">Add Symptoms</a></button>
+      <button type="submit" class="list-group-item"><a href="admin_viewSymptoms.html">View Symptoms</a></button>
+      <button type="submit" class="list-group-item"><a href="admin_viewShool.html">View Schools</a></button>
+    </div>
+  </div>
+  <div class="content col-lg-8" id="addsymptoms">
+    <div class="content" id="mission">
+        <form id="school">
+          <br/>
+          <h1>Add School</h1>
+          <p id="error"></p>
+          <p id="success"></p>
+          <div class="form-group">
+              <label for="inputEmail">Name</label>
+              <input type="text" class="form-control" id="name"  required="true">
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Postal code</label>
+            <input type="text" class="form-control" id="postalCode" required="true">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Street</label>
+            <input type="text" class="form-control" id="street" required="true">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Surburb</label>
+            <input type="text" class="form-control" id="surbub">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Phone</label>
+            <input type="text" class="form-control" id="phone" >
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="text" class="form-control" id="email" >
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Province</label>
+            <input type="text" class="form-control" id="province" required="true">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">City</label>
+            <input type="text" class="form-control" id="city" >
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Link</label>
+            <input type="text" class="form-control" id="link">
+        </div>
+          <button type="submit" class="btn btn-primary" id="addSchool">Add School</button>
+      </form>
+ 
+  </div>
+</div>
+</div><!-- content container -->
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/adminscript.js"></script>
+<script>
+    $('#school').submit(function(e){
+        e.preventDefault();
+;    var name=$("#name");
+    var postalCode=$("#postalCode");
+    var street=$("#street");
+    var surbub=$("#surbub");
+    var phone=$("#phone");
+    var email=$("#email");
+    var province=$("#province");
+    var city=$("#city");
+    var link=$("#link");
+    var schooldData  {
+    "name": name,
+    "postalCode": postalCode,
+    "street": street,
+    "surbub":surbub,
+    "phone": phone
+    "email": email,
+    "province": province,
+    "city": city,
+    "link": link
+}
+var jsonSchool = JSON.stringify(schooldData);
+$.ajax({
+    type: "POST",
+	headers: {
+		'Authorization':"Bearer "+ userJson.token,
+  'Content-Type': 'application/json'
+	},
+    url: "http://localhost:5001/api/content/school",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    data: jsonSchool, 
+    success: function(data) {
+      $("#success").text("School added successfully");
+    },
+    error: function(data){
+        $("#error").text("Failed to add school");
+    }
+});
+    });
+</script>
+
+
+<script>
+$(function() {
+  var topoffset = 70; //variable for menu height
+
+  //Use smooth scrolling when clicking on navigation
+  $('.navbar-nav a').click(function() {
+    if (location.pathname.replace(/^\//,'') ===
+      this.pathname.replace(/^\//,'') &&
+      location.hostname === this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top-topoffset
+        }, 500);
+        return false;
+      } //target.length
+    } //click function
+  }); //smooth scrolling
+});
+
+</script>
+</body>
+</html>

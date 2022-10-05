@@ -47,28 +47,8 @@
       <button type="submit" class="list-group-item"><a href="admin_viewShool.html">View Schools</a></button>
     </div>
   </div>
-  <div class="content col-lg-8" id="mission">
-    <form>
-      <div class="form-group">
-        <h4 class="card-title">Parents Count</h4>
-          <label for="inputEmail">Number of Parent Accounts: <span id="parents"></span></label>
-      </div>
-
-      <div class="form-group">
-        <h4 class="card-title">Symptoms</h4>
-          <label for="inputEmail">Number of Symptoms: <span id="symptoms"></span></label>
-      </div>
-      <div class="form-group">
-        <h4 class="card-title">Number of Childrens</h4>
-        <label for="inputEmail">Number of Parent Childrens: <span id="childrens"></span></label>
-    </div>
-    <div class="form-group">
-      <h4 class="card-title">Number of Schools</h4>
-        <label for="inputEmail">Number of special schools: <span id="schools"></span></label><br/>
-        <label for="inputEmail">Durban: <span id="Durban"></span></label><br/>
-        <label for="inputEmail">Maritzburg: <span id="Pertermaridzburg"></span></label><br/>
-    </div>
-  </form>
+  <div class="content col-lg-8" id="symptoms">
+ 
   </div>
 </div>
 </div><!-- content container -->
@@ -78,6 +58,38 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
 <script type="text/javascript" src="js/adminscript.js"></script>
+<script>
+$.ajax({
+    type: "GET",
+	headers: {
+		'Authorization':"Bearer "+ userJson.token,
+  'Content-Type': 'application/json'
+	},
+    url: "http://localhost:5001/api/content/childrens",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+
+    success: function(data) {
+      $("#symptoms").append("<table><thead><tr><th>Age</th><th>Name</th><th>Gender</th></tr> </thead>");
+      data.forEach(function (v) { var age = v.age; var name = v.name; var gender = v.gender;
+      $("#symptoms table").append("<tr><td>"+age+"</td><td>"+name+"</td><td>"+gender+"</td><tr>");
+      });
+   
+      $("#symptoms table").addClass("table");
+      $("td").attr("scope","row");
+      $("th").attr("scope","col");
+      $("#symptoms").append("</table>");
+
+      
+      //(data);
+      //  $("#childrens").text(data.length);
+    },
+    error: function(data){
+        alert("fail");
+    }
+});
+
+</script>
 
 
 <script>

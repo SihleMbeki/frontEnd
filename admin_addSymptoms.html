@@ -47,28 +47,30 @@
       <button type="submit" class="list-group-item"><a href="admin_viewShool.html">View Schools</a></button>
     </div>
   </div>
-  <div class="content col-lg-8" id="mission">
-    <form>
-      <div class="form-group">
-        <h4 class="card-title">Parents Count</h4>
-          <label for="inputEmail">Number of Parent Accounts: <span id="parents"></span></label>
-      </div>
-
-      <div class="form-group">
-        <h4 class="card-title">Symptoms</h4>
-          <label for="inputEmail">Number of Symptoms: <span id="symptoms"></span></label>
-      </div>
-      <div class="form-group">
-        <h4 class="card-title">Number of Childrens</h4>
-        <label for="inputEmail">Number of Parent Childrens: <span id="childrens"></span></label>
-    </div>
-    <div class="form-group">
-      <h4 class="card-title">Number of Schools</h4>
-        <label for="inputEmail">Number of special schools: <span id="schools"></span></label><br/>
-        <label for="inputEmail">Durban: <span id="Durban"></span></label><br/>
-        <label for="inputEmail">Maritzburg: <span id="Pertermaridzburg"></span></label><br/>
-    </div>
-  </form>
+  <div class="content col-lg-8" id="addsymptoms">
+    <div class="content" id="mission">
+        <form id="symptom">
+          <h1>Add Symptom</h1>
+          <p id="error"></p>
+          <p id="success"></p>
+          <div class="form-group">
+              <label for="inputEmail">Description</label>
+              <textarea class="form-control" id="Description"  required="true"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Age</label>
+            <input type="text" class="form-control" id="Age" required="true">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" required="true">Gender</label>
+            <select required="true" id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              </select>
+        </div>
+          <button type="submit" class="btn btn-primary" id="addSymptom">Add Symptom</button>
+      </form>
+ 
   </div>
 </div>
 </div><!-- content container -->
@@ -78,6 +80,38 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
 <script type="text/javascript" src="js/adminscript.js"></script>
+<script>
+    $('#symptom').submit(function(e){
+        e.preventDefault();
+    var Description=$("#Description").val();
+    var Age=$("#Age").val();
+    var gender=$("#gender").val();
+
+    var symptomData ={
+    "Description": Description,
+    "Age": Age,
+    "gender": gender
+    }
+var jsonSymptom = JSON.stringify(symptomData);
+$.ajax({
+    type: "POST",
+	headers: {
+		'Authorization':"Bearer "+ userJson.token,
+  'Content-Type': 'application/json'
+	},
+    url: "http://localhost:5001/api/content/symptoms",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    data: jsonSymptom, 
+    success: function(data) {
+      $("#success").text("Symptom added successfully");
+    },
+    error: function(data){
+        $("#error").text("Failed to add symptom");
+    }
+});
+    });
+</script>
 
 
 <script>
