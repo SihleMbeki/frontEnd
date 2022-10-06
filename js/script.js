@@ -25,7 +25,11 @@ $.ajax({
 		crossDomain: true,
 		data: json,    
 		success: function (data, textStatus, xhr) {
+			if(data.role="public"){
+				window.location.assign("http://localhost/view/view_home.html")
+			}else if(data.role="admin"){
 			window.location.assign("http://localhost/view/admin_home.html")
+		}
 			console.log(data);
 			console.log(xhr.status);
 			localStorage.setItem('user', JSON.stringify(data));

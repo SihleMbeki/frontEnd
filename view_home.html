@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Bootstrap</title>
+</head>
+
+<body data-spy="scroll" data-target="#navbar-site" data-offset="80">
+
+  <style>
+    body {
+      position: relative;
+      padding-top: 80px;
+    }
+  </style>
+
+<nav id="navbar-site" class="fixed-top navbar navbar-dark navbar-expand-sm">
+  <div class="container">
+  
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="#mission">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#services">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#staff">Contact</a></li>
+    </ul>
+
+    <form class="form-inline pull-xs-right">
+      <button class="btn btn-primary" type="submit" id="logout">Logout</button>
+    </form><!-- navbar-nav -->
+  </div><!-- container -->
+</nav>
+
+<div class="container">
+<div class="row">
+  <div class="content col-lg-3" id="mission">
+
+      <div class="list-group">
+        <button type="submit" class="list-group-item"><a href="admin_addSchool.html">Add School</a></button>
+        <button type="submit" class="list-group-item"><a href="admin_addSymptoms.html">Add Symptoms</a></button>
+        <button type="submit" class="list-group-item"><a href="admin_viewSymptoms.html">View Symptoms</a></button>
+        <button type="submit" class="list-group-item"><a href="admin_viewShool.html">View Schools</a></button></div>
+  </div>
+  <div class="content col-lg-8" id="mission">
+    <div class="content col-lg-8" id="viewChildrens">
+ 
+    </div>
+  </div>
+</div>
+</div><!-- content container -->
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/adminscript.js"></script>
+<script>
+     var user = JSON.parse(localStorage.getItem('user'));
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Authorization':"Bearer "+ userJson.token,
+      'Content-Type': 'application/json'
+        },
+        url: "http://localhost:5001/api/content/childrens",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+    
+        success: function(data) {
+          $("#viewChildrens").append("<table><thead><tr><th>Age</th><th>Name</th><th>Gender</th></tr> </thead>");
+          data.forEach(function (v) {
+            if(v.parent==user.id) {
+                var age=v.age;var id = v.id; var name = v.name; var gender = v.gender;
+          $("#viewChildrens table").append("<tr><td name=\"age\">"+age+"</td><td name=\"name\">"+name+"</td><td name=\"gender\">"+gender+"</td><tr>");
+          }
+          });
+       
+          $("#viewChildrens table").addClass("table");
+          $("td").attr("scope","row");
+          $("th").attr("scope","col");
+          $("#viewChildrens").append("</table>");
+    
+          
+          //(data);
+          //  $("#childrens").text(data.length);
+        },
+        error: function(data){
+            alert("fail");
+        }
+    });
+    
+    </script>
+
+<script>
+$(function() {
+  var topoffset = 70; //variable for menu height
+
+  //Use smooth scrolling when clicking on navigation
+  $('.navbar-nav a').click(function() {
+    if (location.pathname.replace(/^\//,'') ===
+      this.pathname.replace(/^\//,'') &&
+      location.hostname === this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top-topoffset
+        }, 500);
+        return false;
+      } //target.length
+    } //click function
+  }); //smooth scrolling
+});
+
+</script>
+</body>
+</html>
