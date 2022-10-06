@@ -68,6 +68,13 @@
 <script type="text/javascript" src="js/script.js"></script>
 
 <script>
+  $("h1").fadeIn(500);
+  var user = JSON.parse(localStorage.getItem('user'));
+if(user.role=="public"){
+	window.location.assign("http://localhost/view/view_home.html");
+}else if(user.role=="admin"){
+  window.location.assign("http://localhost/view/admin_home.html")
+}
 $(function() {
   var topoffset = 70; //variable for menu height
 

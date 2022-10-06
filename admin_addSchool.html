@@ -39,8 +39,6 @@
   <div class="content col-lg-3" id="mission">
 
       <div class="list-group">
-      <button type="submit" class="list-group-item">View Users</button>
-      <button type="submit" class="list-group-item">Add Users</button>
       <button type="submit" class="list-group-item"><a href="admin_addSchool.html">Add School</a></button>
       <button type="submit" class="list-group-item"><a href="admin_addSymptoms.html">Add Symptoms</a></button>
       <button type="submit" class="list-group-item"><a href="admin_viewSymptoms.html">View Symptoms</a></button>
@@ -105,21 +103,21 @@
 <script>
     $('#school').submit(function(e){
         e.preventDefault();
-;    var name=$("#name");
-    var postalCode=$("#postalCode");
-    var street=$("#street");
-    var surbub=$("#surbub");
-    var phone=$("#phone");
-    var email=$("#email");
-    var province=$("#province");
-    var city=$("#city");
-    var link=$("#link");
-    var schooldData  {
+;    var name=$("#name").val();
+    var postalCode=$("#postalCode").val();
+    var street=$("#street").val();
+    var surbub=$("#surbub").val();
+    var phone=$("#phone").val();
+    var email=$("#email").val();
+    var province=$("#province").val();
+    var city=$("#city").val();
+    var link=$("#link").val();
+    var schooldData = {
     "name": name,
     "postalCode": postalCode,
     "street": street,
     "surbub":surbub,
-    "phone": phone
+    "phone": phone,
     "email": email,
     "province": province,
     "city": city,
