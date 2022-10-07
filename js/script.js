@@ -25,7 +25,6 @@ $.ajax({
 		crossDomain: true,
 		data: json,    
 		success: function (data, textStatus, xhr) {
-			alert(data.role);
 			if(data.role=="public"){
 				window.location.assign("http://localhost/view/view_home.html");
 			}
