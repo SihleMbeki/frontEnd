@@ -25,19 +25,21 @@ $.ajax({
 		crossDomain: true,
 		data: json,    
 		success: function (data, textStatus, xhr) {
-			if(data.role="public"){
-				window.location.assign("http://localhost/view/view_home.html")
-			}else if(data.role="admin"){
-			window.location.assign("http://localhost/view/admin_home.html")
+			alert(data.role);
+			if(data.role=="public"){
+				window.location.assign("http://localhost/view/view_home.html");
+			}
+			 if(data.role=="admin"){
+			window.location.assign("http://localhost/view/admin_home.html");
 		}
+		
 			console.log(data);
 			console.log(xhr.status);
 			localStorage.setItem('user', JSON.stringify(data));
 		}, 
 		failure: function(response) {  
 			console.log(response.d); 
-		} 
-		,
+		},
     complete: function(xhr, textStatus) {
         console.log(xhr.status);
 		if(xhr.status==401 || xhr.status==500){
@@ -45,7 +47,6 @@ $.ajax({
 			//$("#error").toggleClass(".error");
 		}
     } 
- 
 	}); /*
 	 $.post('http://localhost:5001/api/account/login', json, function(response){ 
       alert("success");
