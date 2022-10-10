@@ -30,23 +30,24 @@
 
 <div class="container">
 
-  <div class="content" id="mission">
-    <form>
+  <div class="content" id="register">
+    <h1 id="error"></h1>
+    <form id="registerForm">
       <div class="form-group">
-          <label for="inputEmail">Username</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+          <label for="inputUsername">Username</label>
+          <input type="text" class="form-control" id="inputUsername" placeholder="Username" required="true">
       </div>
       <div class="form-group">
-          <label for="inputPassword">Email</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="test@example.com" required="true">
       </div>
       <div class="form-group">
         <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="true">
     </div>
     <div class="form-group">
-        <label for="inputPassword">Confirm Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <label for="inputPasswordC">Confirm Password</label>
+        <input type="password" class="form-control" id="inputPasswordC" placeholder="Password" required="true">
     </div>
       <button type="submit" class="btn btn-primary">Register</button>
   </form>
@@ -56,6 +57,7 @@
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 <script>
 $(function() {
