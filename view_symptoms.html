@@ -46,13 +46,20 @@
       <button type="submit" class="list-group-item"><a href="admin_viewShool.html">View Schools</a></button> --></div> 
   </div>
   <div class="content col-lg-8" id="mission">
-    <div class="content col-lg-8" id="viewChildrens">
+    <div class="content col-lg-8" id="viewSymptoms">
+        <h1>Symptoms</h1>
+
  
     </div>
   </div>
 </div>
 </div><!-- content container -->
-
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const age = urlParams.get('age');
+    const gender = urlParams.get('gender');
+</script>
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -68,21 +75,20 @@
             'Authorization':"Bearer "+ userJson.token,
       'Content-Type': 'application/json'
         },
-        url: "http://localhost:5001/api/content/childrens",
+        url: "http://localhost:5001/api/content/symptoms",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
     
         success: function(data) {
-          $("#viewChildrens").append("<table><thead><tr><th>Age</th><th>Name</th><th>Gender</th></tr> </thead>");
+          $("#viewSymptoms").append("<table><thead><tr><th>Symptoms</th></tr> </thead>");
           data.forEach(function (v) {
-            if(v.parent==user.id) {
-                var age=v.age;var id = v.id; var name = v.name; var gender = v.gender;
-                let param="age="+age+"&gender="+gender;
-          $("#viewChildrens table").append("<tr><td name=\"age\"><a href=\"#?"+param+"\">"+age+"</a></td><td name=\"name\"><a href=\"#?"+param+"\">"+name+"</a></td><td name=\"gender\"><a href=\"view_symptoms.html?"+param+"\">"+gender+"</a></td><tr>");
+            if(v.age==age && v.gender==gender) {
+                var description=v.description;
+          $("#viewSymptoms table").append("<tr><td>"+description+"</td><tr>");
           }
           });
        
-          $("#viewChildrens table").addClass("table");
+          $("#viewSymptoms table").addClass("table");
           $("td").attr("scope","row");
           $("th").attr("scope","col");
           $("#viewChildrens").append("</table>");
