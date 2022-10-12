@@ -47,63 +47,22 @@
 </div> 
   </div>
   <div class="content col-lg-8" id="mission">
-    <div class="content col-lg-8" id="viewSymptoms">
-        <h1>Symptoms</h1>
-
- 
-    </div>
+    <form>
+        <h4 class="card-title">Durban</h4>
+      <div id="durbanSchool">
+          
+      </div>
+  </form>
   </div>
 </div>
 </div><!-- content container -->
-<script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const age = urlParams.get('age');
-    const gender = urlParams.get('gender');
-</script>
+
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/admin.js"></script>
 <script type="text/javascript" src="js/adminscript.js"></script>
-<script>
-  var account=localStorage.getItem('user');
-  $("#username").html( account=localStorage.getItem('user').username);
-     var user = JSON.parse(localStorage.getItem('user'));
-    $.ajax({
-        type: "GET",
-        headers: {
-            'Authorization':"Bearer "+ userJson.token,
-      'Content-Type': 'application/json'
-        },
-        url: "http://localhost:5001/api/content/symptoms",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-    
-        success: function(data) {
-          $("#viewSymptoms").append("<table><thead><tr><th>Symptoms</th></tr> </thead>");
-          data.forEach(function (v) {
-            if(v.age==age && v.gender==gender) {
-                var description=v.description;
-          $("#viewSymptoms table").append("<tr><td>"+description+"</td><tr>");
-          }
-          });
-       
-          $("#viewSymptoms table").addClass("table");
-          $("td").attr("scope","row");
-          $("th").attr("scope","col");
-          $("#viewChildrens").append("</table>");
-    
-          
-          //(data);
-          //  $("#childrens").text(data.length);
-        },
-        error: function(data){
-            alert("fail");
-        }
-    });
-    
-    </script>
+
 
 <script>
 $(function() {
