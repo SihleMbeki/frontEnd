@@ -68,14 +68,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 
 <script>
-	var user = JSON.parse(localStorage.getItem('user'));
-	if(user!=null){
-  if(user.role=="public"){
-	  window.location.assign("http://localhost/view/view_home.html");
-  }else if(user.role=="admin"){
-	window.location.assign("http://localhost/view/admin_home.html")
-  }
-  }
+    localStorage.removeItem('user');
 $(function() {
   var topoffset = 70; //variable for menu height
 

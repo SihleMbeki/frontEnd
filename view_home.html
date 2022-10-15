@@ -39,11 +39,11 @@
   <div class="content col-lg-3" id="mission">
 
       <div class="list-group">
-        <h1 id="username">test</h1>
+        <h1 id="username"></h1>
         <button type="submit" class="list-group-item"><a href="home_addChild.html">Add Child</a></button>
         <h2>View Schools</h2>
         <button type="submit" class="list-group-item"><a href="viewSchoolDurban.html">Durban</a></button>
-        <button type="submit" class="list-group-item"><a href="pietermaritzburg.html">Pietermaritzburg.html</a></button>
+        <button type="submit" class="list-group-item"><a href="pietermaritzburg.html">Pietermaritzburg</a></button>
 </div> 
   </div>
   <div class="content col-lg-8" id="mission">
@@ -61,8 +61,8 @@
 <script type="text/javascript" src="js/adminscript.js"></script>
 <script>
   var account=localStorage.getItem('user');
-  $("#username").html( account=localStorage.getItem('user').username);
      var user = JSON.parse(localStorage.getItem('user'));
+     $("#username").html(user.username);
     $.ajax({
         type: "GET",
         headers: {
@@ -79,7 +79,7 @@
             if(v.parent==user.id) {
                 var age=v.age;var id = v.id; var name = v.name; var gender = v.gender;
                 let param="age="+age+"&gender="+gender;
-          $("#viewChildrens table").append("<tr><td name=\"age\"><a href=\"#?"+param+"\">"+age+"</a></td><td name=\"name\"><a href=\"#?"+param+"\">"+name+"</a></td><td name=\"gender\"><a href=\"view_symptoms.html?"+param+"\">"+gender+"</a></td><tr>");
+          $("#viewChildrens table").append("<tr><td name=\"age\"><a href=\"view_symptoms.html?"+param+"\">"+age+"</a></td><td name=\"name\"><a href=\"view_symptoms.html?"+param+"\">"+name+"</a></td><td name=\"gender\"><a href=\"view_symptoms.html?"+param+"\">"+gender+"</a></td><tr>");
           }
           });
        
@@ -93,7 +93,7 @@
           //  $("#childrens").text(data.length);
         },
         error: function(data){
-            alert("fail");
+          //  alert("fail");
         }
     });
     

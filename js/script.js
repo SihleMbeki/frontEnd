@@ -69,7 +69,14 @@ $.ajax({
 			console.log("error");
 		}
 	});*/
-	
+	var user = JSON.parse(localStorage.getItem('user'));
+	if(user!=null){
+  if(user.role=="public"){
+	  window.location.assign("http://localhost/view/view_home.html");
+  }else if(user.role=="admin"){
+	window.location.assign("http://localhost/view/admin_home.html")
+  }
+  }
 
 });
 
@@ -111,7 +118,7 @@ $.ajax({
 		data: json,    
 		success: function (data, textStatus, xhr) {
 			if(data.role=="public"){
-				window.location.assign("http://localhost/view/view_home.html");
+				window.location.assign("http://localhost/view/RegisterLogin.html");
 			}
 			 if(data.role=="admin"){
 			window.location.assign("http://localhost/view/admin_home.html");
@@ -120,6 +127,7 @@ $.ajax({
 			console.log(data);
 			console.log(xhr.status);
 			localStorage.setItem('user', JSON.stringify(data));
+			window.location.assign("http://localhost/view/RegisterLogin.html");
 		}, 
 		failure: function(response) {  
 			$("#error").text("Username taken");
@@ -131,6 +139,8 @@ $.ajax({
 		if(xhr.status==401 || xhr.status==500){
 			$("#error").html("Invalid Login Credentials");
 			//$("#error").toggleClass(".error");
+		}else{
+		//	window.location.assign("http://localhost/view/RegisterLogin.html");
 		}
 		$("#error").text(textStatus);
     }
@@ -157,6 +167,6 @@ $.ajax({
 			console.log("error");
 		}
 	});*/
-	
+
 
 });

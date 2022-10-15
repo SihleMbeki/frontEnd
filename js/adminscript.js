@@ -81,7 +81,7 @@ $.ajax({
 		'Authorization':"Bearer "+ userJson.token,
   'Content-Type': 'application/json'
 	},
-    url: "http://localhost:5001/api/content/school/city/test",
+    url: "http://localhost:5001/api/content/school/city/Pietermaritzburg",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
 
@@ -99,7 +99,7 @@ $.ajax({
 		'Authorization':"Bearer "+ userJson.token,
   'Content-Type': 'application/json'
 	},
-    url: "http://localhost:5001/api/content/school/city/pietermaritzburg",
+    url: "http://localhost:5001/api/content/school/city/Pietermaritzburg",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
 
